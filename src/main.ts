@@ -5,15 +5,15 @@ import { ConfigService } from '@nestjs/config';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // Bật CORS để Frontend gọi được API
+  // Bật CORS để Frontend gọi được API (Cái này Pro làm đúng rồi)
   app.enableCors();
 
-  // LẤY PORT TỰ ĐỘNG TỪ RAILWAY (QUAN TRỌNG)
+  // LẤY PORT TỪ BIẾN MÔI TRƯỜNG
   const port = process.env.PORT || 3001;
 
-  // Phải có '0.0.0.0' để Railway thông luồng được
-  await app.listen(process.env.PORT || 3001, '0.0.0.0');
+  // CHỈNH LẠI DÒNG NÀY: Thêm console.log để mình debug trong Railway Log cho dễ
+  await app.listen(port, '0.0.0.0');
 
-
+  console.log(`Backend WebTech đang chạy tại Port: ${port}`);
 }
 bootstrap();
