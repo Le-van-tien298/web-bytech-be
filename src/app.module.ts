@@ -18,6 +18,11 @@ import { ConfigModule } from '@nestjs/config';
       ssl: {
         rejectUnauthorized: false,
       },
+      extra: {
+        connectionLimit: 5, // Giới hạn số kết nối để Railway không bị ngộp
+        waitForConnections: true,
+        connectTimeout: 20000, // Tăng thời gian chờ kết nối lên 20 giây
+      },
     }),
     ProductsModule,
   ],
