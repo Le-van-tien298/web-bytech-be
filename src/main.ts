@@ -4,10 +4,10 @@ import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.enableCors();
-  const configService = app.get(ConfigService);
-  const port = Number(configService.get('PORT')) || 3001;
+  app.enableCors(); // Nhớ bật cái này để Frontend gọi được nhé
 
-  await app.listen(port);
+  // Render cấp port qua biến process.env.PORT
+  const port = process.env.PORT || 3001;
+  await app.listen(port, '0.0.0.0'); // Thêm '0.0.0.0' để Render nhận diện
 }
 bootstrap();
