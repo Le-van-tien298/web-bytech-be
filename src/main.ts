@@ -12,7 +12,7 @@ async function bootstrap() {
   const port = process.env.PORT || 3001;
 
   // Phải có '0.0.0.0' để Railway thông luồng được
-  await app.listen(port, '0.0.0.0');
+  await app.listen(process.env.PORT || 3001, '0.0.0.0');
 
 
 }
