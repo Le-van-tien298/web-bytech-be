@@ -4,10 +4,16 @@ import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.enableCors(); // Nhớ bật cái này để Frontend gọi được nhé
 
-  // Render cấp port qua biến process.env.PORT
+  // Bật CORS để Frontend gọi được API
+  app.enableCors();
+
+  // LẤY PORT TỰ ĐỘNG TỪ RAILWAY (QUAN TRỌNG)
   const port = process.env.PORT || 3001;
-  await app.listen(port, '0.0.0.0'); // Thêm '0.0.0.0' để Render nhận diện
+
+  // Phải có '0.0.0.0' để Railway thông luồng được
+  await app.listen(port, '0.0.0.0');
+
+
 }
 bootstrap();
